@@ -1,5 +1,7 @@
-import React, {FC, useEffect, useState} from 'react';
-import Recipe, {IRecipeProps} from "../Recipe/Recipe";
+import   React, {FC, useEffect, useState} from 'react';
+import Recipe from "../Recipe/Recipe";
+import {getAllRecipes} from "../../services/recipes.api.service";
+import {IRecipeProps} from "../../models/Recipe";
 
 
 const Recipes: FC = () => {
@@ -8,11 +10,8 @@ const Recipes: FC = () => {
 
     useEffect(() => {
 
-        fetch('https://dummyjson.com/recipes')
-            .then(response => response.json())
-            .then(({recipes}) => {
-                setRecipes(recipes)
-            })
+        getAllRecipes()
+            .then(value => console.log(value.data))
 
     }, [])
 
